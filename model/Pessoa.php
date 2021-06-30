@@ -1,0 +1,94 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of Pessoa
+ *
+ * @author 03567492152
+ */
+
+class Pessoa{
+    private $idpessoa;
+    private $nome;
+    private $dtnasc;
+    private $login;
+    private $senha;
+    private $perfil;
+    private $email;
+    private $cpf;
+
+    function getIdpessoa() {
+        return $this->idpessoa;
+    }
+
+    function getNome() {
+        return $this->nome;
+    }
+
+    function getDtnasc() {
+        return $this->dtnasc;
+    }
+
+    function getLogin() {
+        return $this->login;
+    }
+
+    function getSenha() {
+        return $this->senha;
+    }
+
+    function getPerfil() {
+        return $this->perfil;
+    }
+
+    function getEmail() {
+        return $this->email;
+    }
+
+    function getCpf() {
+        return $this->cpf;
+    }
+
+    function setIdpessoa($idpessoa) {
+        $this->idpessoa = $idpessoa;
+    }
+
+    function setNome($nome) {
+        $this->nome = $nome;
+    }
+
+    function setDtnasc($dtnasc) {
+        $this->dtnasc = $dtnasc;
+    }
+
+    function setLogin($login) {
+        $this->login = $login;
+    }
+
+    function setSenha($senha) {
+        $this->senha = $senha;
+    }
+
+    function setPerfil($perfil) {
+        $this->perfil = $perfil;
+    }
+
+    function setEmail($email) {
+        $this->email = $email;
+    }
+
+    function setCpf($cpf) {
+        $this->cpf = $cpf;
+    }
+
+
+}
+
+
+
+?>
