@@ -4,10 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/PHPMatutino/controller/pessoaController.php</file>
+            <file>file:/C:/xampp/htdocs/PHPMatutino/cadastro.php</file>
             <file>file:/C:/xampp/htdocs/PHPMatutino/index.php</file>
             <file>file:/C:/xampp/htdocs/PHPMatutino/bd/Conecta.php</file>
             <file>file:/C:/xampp/htdocs/PHPMatutino/model/Pessoa.php</file>
-            <file>file:/C:/xampp/htdocs/PHPMatutino/dao/daoPessoa.php</file>
         </group>
     </open-files>
 </project-private>
