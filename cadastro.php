@@ -6,12 +6,7 @@
         <title>Cadastro</title>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-            .bt{
-                padding: 10px;
-                padding: 10px;
-            }
-        </style>
+
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -57,6 +52,29 @@
                          style="margin-top: 10%;">
                         <div class="card-header bg-light text-center
                              ">Cadastro de Cliente</div>
+                             <?php
+                             include_once '../dao/daoPessoa.php';
+                             include_once '../model/Pessoa.php';
+
+
+
+                             if (isset($_POST['cadastrar'])) {
+
+                                 $nome = $_POST['nome'];
+                                 $cpf = $_POST['cpf'];
+
+                                 $dtNasc = $_POST['dtNasc'];
+                                 $telefone = $_POST['Tel'];
+                                 $email = $_POST['email'];
+                                 $login = $_POST['login'];
+                                 $senha = $_POST['senha'];
+                                 $perfil = $_POST['perfil'];
+
+
+                                 $pc = new PessoController();
+                                 echo $pc->inserirPessoa($nome, $cpf, $dtNasc, $telefone, $email, $login, $senha, $perfil);
+                             }
+                             ?>
                         <div class="card-body border">
 
                             <div>
@@ -76,57 +94,54 @@
                                                     <input type="text" id="cpf" name="cpf" class="form-control"  placeholder="xxx.xxx.xxx-xx"
                                                            pattern="\d{0,3}\.\d{1,3}\.\d{1,3}-\d{1,2}" required>
 
+
                                                     <br>
                                                     <form method="post" action="">
                                                         <div class="row espaco">
-                                                            <label for="cnpj">CNPJ:</label>
+                                                            <label for="nascimento">Data de Nascimento:</label>
                                                             <br>
-                                                            <input type="text" id="cnpj" class="form-control" name="cnpj" placeholder="xx.xxx.0001-xx"
-                                                                   pattern="^\d{2}\.\d{3}\.\d{3}\.\/0001-\d{2}$" required>
+                                                            <input type="date" id="nascimento" class="form-control" name="nascimento" required>
 
                                                             <br>
                                                             <form method="post" action="">
                                                                 <div class="row espaco">
-                                                                    <label for="nascimento">Data de Nascimento:</label>
+                                                                    <label for="tel">Telefone:</label>
                                                                     <br>
-                                                                    <input type="date" id="nascimento" class="form-control" name="nascimento" required>
+                                                                    <input type="tel" id="tel" name="tel" class="form-control" placeholder="(xx)9xxx-xxxx" pattern="\(\d{2}\)[\s]\d{4,5}-\d{4}" required
+                                                                           onblur="limpaNumero()">
 
                                                                     <br>
                                                                     <form method="post" action="">
-                                                                        <div class="row espaco">
-                                                                            <label for="tel">Telefone:</label>
+
+                                                                        <label for="email">Email:</label>
+                                                                        <br>
+                                                                        <input type="email" id="email" class="form-control" name="email" placeholder="Digite seu Email Atual"
+                                                                               pattern="([\w].{3,20})@([\w].+)\.([\w]{3,5})" required>
+
+
+                                                                        <form id="form-contato" class="col-md-6 offset-md-2 ">
+                                                                            <label for="nome">Login:</label>
                                                                             <br>
-                                                                            <input type="tel" id="tel" name="tel" class="form-control" placeholder="(xx)9xxx-xxxx" pattern="\(\d{2}\)[\s]\d{4,5}-\d{4}" required
-                                                                                   onblur="limpaNumero()">
+                                                                            <input type="text" id="login" class="form-control"
+                                                                                   name="login" placeholder="Digite o login" required>
+
 
                                                                             <br>
                                                                             <form method="post" action="">
-
-                                                                                <label for="email">Email:</label>
-                                                                                <br>
-                                                                                <input type="email" id="email" class="form-control" name="email" placeholder="Digite seu Email Atual"
-                                                                                       pattern="([\w].{3,20})@([\w].+)\.([\w]{3,5})" required>
-
-
-                                                                                <form id="form-contato" class="col-md-6 offset-md-2 ">
-                                                                                    <label for="nome">Login:</label>
+                                                                                <div class="row espaco">
+                                                                                    <label for="senha">Senha:</label>
                                                                                     <br>
-                                                                                    <input type="text" id="login" class="form-control"
-                                                                                           name="login" placeholder="Digite o login" required>
-
+                                                                                    <input type="password" id="senha" class="form-control" name="senha" placeholder="Registre sua Senha" pattern="" required>
 
                                                                                     <br>
                                                                                     <form method="post" action="">
                                                                                         <div class="row espaco">
-                                                                                            <label for="senha">Senha:</label>
+                                                                                            <label for="senha">Senha2:</label>
                                                                                             <br>
-                                                                                            <input type="password" id="senha" class="form-control" name="senha" placeholder="Registre sua Senha" pattern="" required>
+                                                                                            <input type="password" id="senha2" class="form-control" name="senha2" placeholder="Confirme sua Senha" pattern="" required>
 
-                                                                                            <br> 
 
-                                                                                            <label for="senha">Conf. Senha:</label>
-                                                                                            <br>
-                                                                                            <input type="password" id="senha" class="form-control" name="senha2" placeholder="confirme sua Senha" pattern="" required>
+
                                                                                             <label for="perfil">Perfil</label>
                                                                                             <select name="perfil" class="form-control">
                                                                                                 <option>[--Selecione--]</option>
@@ -140,39 +155,22 @@
                                                                                             </div>
                                                                                             <div class="row espaco" style="margin-top: 20px;">
                                                                                                 <div class="col-md-8 offset-md-5 ">
-                                                                                                    <input class="btn btn-success bt"  type="submit" name="cadastrar" value="Enviar"> 
-
+                                                                                                    <input class="btn btn-success "  type="submit" name="cadastrar" value="Enviar"> 
                                                                                                     &nbsp;&nbsp;
-                                                                                                    <input class="btn btn-light bt" type="reset" value="Limpar">
-
-                                                                                                    <br>
+                                                                                                    <input class="btn btn-light " type="reset" value="Limpar">
                                                                                                     </form>
 
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="conteiner-fluid" > 
                                                                                                 <div class="row" >
-                                                                                                    <div class="col-md-8 offset-md-3">
+                                                                                                    <div class="col-md-8 offset-md-5">
 
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <?php
-                                                                                                if(isset($_POST['cadastrar'])){
-                                                                                                    $nome = $_POST['nome'];
-                                                                                                    $nome = $_POST['cpf'];
-                                                                                                    $nome = $_POST['cnpj'];
-                                                                                                    $nome = $_POST['dtNasc'];
-                                                                                                    $nome = $_POST['Tel'];
-                                                                                                    $nome = $_POST['email'];
-                                                                                                    $nome = $_POST['login'];
-                                                                                                            
-                                                                                                            
-                                                                                                            $pc = new PessoController();
-                                                                                                    $pc->inserirPessoa();
-                                                                                                }
-                                                                                                ?>
-                                                                                                
-                                                                                            
+
+
+
                                                                                                 <script src="js/bootstrap.js"></script>
                                                                                                 <script src="js/bootstrap.min.js"></script>
                                                                                                 </body>
